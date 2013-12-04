@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D7C6335A-77D5-4B21-9FB8-5A4D3AA3C7A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SanGISMaintenanceToolbar</RootNamespace>
+    <AssemblyName>SanGISMaintenanceToolbar</AssemblyName>
+    <MyType>Windows</MyType>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SanGISMaintenanceToolbar.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SanGISMaintenanceToolbar.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DocumentationFile>SanGISMaintenanceToolbar.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DocumentationFile>SanGISMaintenanceToolbar.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>true</RegisterForComInterop>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.ADF.Local, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.ArcMapUI, Version=9.3.0.1770, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Carto, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Controls, Version=9.2.0.1239, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Display, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Editor, Version=9.3.0.1770, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.EditorExt, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Framework, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.Geometry, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.System, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.SystemUI, Version=9.2.0.1225, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buttons\Address_AddAddressAnno.vb" />
+    <Compile Include="Buttons\Address_AddAddressPoint.vb" />
+    <Compile Include="Buttons\Address_CheckOverlapping.vb" />
+    <Compile Include="Buttons\Address_Overlay.vb" />
+    <Compile Include="Buttons\All_ZipperTask.vb" />
+    <Compile Include="Buttons\BlockNum_AddAnno.vb" />
+    <Compile Include="Buttons\EditBlockRangeOverlap.vb" />
+    <Compile Include="Buttons\EditCityAddress.vb" />
+    <Compile Include="Buttons\EditROSLog.vb" />
+    <Compile Include="Buttons\EditAddressIssues.vb" />
+    <Compile Include="Buttons\Intersection_GetConnectedRoads.vb" />
+    <Compile Include="Buttons\Intersection_overlayUpdateType.vb" />
+    <Compile Include="Buttons\Intersection_SelectUnderReivew.vb" />
+    <Compile Include="Buttons\Lot_AddLotAnno.vb" />
+    <Compile Include="Buttons\Lot_LotIDIncrementer.vb" />
+    <Compile Include="Buttons\MapNum_AddAnno.vb" />
+    <Compile Include="Buttons\Parcel_AddParcelAnno.vb" />
+    <Compile Include="Buttons\Parcel_Lot_Incrementer.vb" />
+    <Compile Include="Buttons\Parcel_Overlay.vb" />
+    <Compile Include="Buttons\Parcel_ZoomToParcel.vb" />
+    <Compile Include="Buttons\QC_NoSubmit.vb" />
+    <Compile Include="Buttons\QueryLastEdits.vb" />
+    <Compile Include="Buttons\QuerySubdivision.vb" />
+    <Compile Include="Buttons\QueryAPN.vb" />
+    <Compile Include="Buttons\QueryControl.vb" />
+    <Compile Include="Buttons\QueryMissingAPNs.vb" />
+    <Compile Include="Buttons\QueryMPRParcel.vb" />
+    <Compile Include="Buttons\QueryROS.vb" />
+    <Compile Include="Buttons\QueryRoadSegByRoadID.vb" />
+    <Compile Include="Buttons\Road_AddRoadBlockAnno.vb" />
+    <Compile Include="Buttons\Road_AddRoadNameAnno.vb" />
+    <Compile Include="Buttons\Road_AddRoadSegAlias.vb" />
+    <Compile Include="Buttons\Road_GetConnectedRoads.vb" />
+    <Compile Include="Buttons\Road_LinkAnno.vb" />
+    <Compile Include="Buttons\Road_MergeSegments.vb" />
+    <Compile Include="Buttons\Road_PasteFeature.vb" />
+    <Compile Include="Buttons\Road_RoadPolygonUpdate.vb" />
+    <Compile Include="Buttons\Road_RoadSplitTool.vb" />
+    <Compile Include="Buttons\Road_TransferRoadAttributes.vb" />
+    <Compile Include="Buttons\Road_ZoomToRoadSegmentID.vb" />
+    <Compile Include="Buttons\SubName_AddAnno.vb" />
+    <Compile Include="Buttons\TentMap_AddAnno.vb" />
+    <Compile Include="Buttons\Version_QualityChecker.vb" />
+    <Compile Include="Forms\CustInputBox.Designer.vb">
+      <DependentUpon>CustInputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddRoadSegAlias.Designer.vb">
+      <DependentUpon>frmAddRoadSegAlias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddRoadSegAlias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditAddressIssue.Designer.vb">
+      <DependentUpon>frmEditAddressIssue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditAddressIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditBlockRangeIssue.Designer.vb">
+      <DependentUpon>frmEditBlockRangeIssue.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditBlockRangeIssue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParcelLotIncrementer.Designer.vb">
+      <DependentUpon>frmParcelLotIncrementer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmParcelLotIncrementer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPasteRoadAttributes.Designer.vb">
+      <DependentUpon>frmPasteRoadAttributes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPasteRoadAttributes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQualityChecker.Designer.vb">
+      <DependentUpon>frmQualityChecker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQualityChecker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryLastEdits.Designer.vb">
+      <DependentUpon>frmQueryLastEdits.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryLastEdits.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmQueryLots.Designer.vb">
+      <DependentUpon>FrmQueryLots.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmQueryLots.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryParcelBacklog.Designer.vb">
+      <DependentUpon>frmQueryParcelBacklog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryParcelBacklog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryControl.Designer.vb">
+      <DependentUpon>frmQueryControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryApn.Designer.vb">
+      <DependentUpon>frmQueryApn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryApn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditCityAddress.Designer.vb">
+      <DependentUpon>frmEditCityAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditCityAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditROSLog.Designer.vb">
+      <DependentUpon>frmEditROSLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditROSLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryMPRInfo.Designer.vb">
+      <DependentUpon>frmQueryMPRInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryMPRInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryRoadSegByRoadID.Designer.vb">
+      <DependentUpon>frmQueryRoadSegByRoadID.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryRoadSegByRoadID.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectPasteLayer.Designer.vb">
+      <DependentUpon>frmSelectPasteLayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectPasteLayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSplitRoadAttributes.Designer.vb">
+      <DependentUpon>frmSplitRoadAttributes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSplitRoadAttributes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTransferRoadInfo.Designer.vb">
+      <DependentUpon>frmTransferRoadInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTransferRoadInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmZipperInput.designer.vb">
+      <DependentUpon>frmZipperInput.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmZipperInput.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\AddAnnoMenu.vb" />
+    <Compile Include="Utilities\ExportToExcel.vb" />
+    <Compile Include="Utilities\FieldPropertyDescriptor.vb" />
+    <Compile Include="Forms\frmEditCutLog.Designer.vb">
+      <DependentUpon>frmEditCutLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditCutLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEditSubdivisionLog.Designer.vb">
+      <DependentUpon>frmEditSubdivisionLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditSubdivisionLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\Globals.vb" />
+    <Compile Include="Forms\frmEditRoadName.Designer.vb">
+      <DependentUpon>frmEditRoadName.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEditRoadName.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\OverlayMenu.vb" />
+    <Compile Include="Utilities\QueryFormsMenu.vb" />
+    <Compile Include="Utilities\SangisMaintenanceToolbar.vb" />
+    <Compile Include="Buttons\EditRoadName.vb" />
+    <Compile Include="Buttons\EditSubdivisionLog.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Buttons\EditCutLog.vb" />
+    <Compile Include="Utilities\TableWrapper.vb" />
+    <Compile Include="Utilities\UpdateFormsMenu.vb" />
+    <Compile Include="Utilities\Zipper_Utilities.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\CustInputBox.resx">
+      <DependentUpon>CustInputBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditAddressIssue.resx">
+      <DependentUpon>frmEditAddressIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEditBlockRangeIssue.resx">
+      <DependentUpon>frmEditBlockRangeIssue.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmQueryLastEdits.resx">
+      <DependentUpon>frmQueryLastEdits.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmZipperInput.resX">
+      <DependentUpon>frmZipperInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmEditRoadName.resx">
+      <DependentUpon>frmEditRoadName.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditSubdivisionLog.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditRoadName.bmp" />
+    <EmbeddedResource Include="Forms\frmEditSubdivisionLog.resx">
+      <DependentUpon>frmEditSubdivisionLog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditCutLog.bmp" />
+    <EmbeddedResource Include="Forms\frmEditCutLog.resx">
+      <DependentUpon>frmEditCutLog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditROSLog.bmp" />
+    <EmbeddedResource Include="Forms\frmEditROSLog.resx">
+      <DependentUpon>frmEditROSLog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditCityAddress.bmp" />
+    <EmbeddedResource Include="Forms\frmEditCityAddress.resx">
+      <DependentUpon>frmEditCityAddress.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryAPN.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmQueryApn.resx">
+      <DependentUpon>frmQueryApn.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QuerySubdivision.bmp" />
+    <EmbeddedResource Include="Forms\frmQueryMPRInfo.resx">
+      <DependentUpon>frmQueryMPRInfo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryMPRParcel.bmp" />
+    <EmbeddedResource Include="Forms\frmQueryRoadSegByRoadID.resx">
+      <DependentUpon>frmQueryRoadSegByRoadID.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryRoadSegByRoadID.bmp" />
+    <EmbeddedResource Include="Forms\frmQueryControl.resx">
+      <DependentUpon>frmQueryControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryControl.bmp" />
+    <EmbeddedResource Include="Forms\frmQueryParcelBacklog.resx">
+      <DependentUpon>frmQueryParcelBacklog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryMissingAPNs.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryROS.bmp" />
+    <EmbeddedResource Include="Forms\FrmQueryLots.resx">
+      <DependentUpon>FrmQueryLots.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmPasteRoadAttributes.resx">
+      <DependentUpon>frmPasteRoadAttributes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectPasteLayer.resx">
+      <DependentUpon>frmSelectPasteLayer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_AddRoadSegAlias.bmp" />
+    <EmbeddedResource Include="Buttons\Road_AddRoadNameAnno.bmp" />
+    <EmbeddedResource Include="Buttons\Road_AddRoadBlockAnno.bmp" />
+    <EmbeddedResource Include="Buttons\Road_PasteFeature.bmp" />
+    <EmbeddedResource Include="Buttons\Road_ZoomToRoadSegmentID.bmp" />
+    <EmbeddedResource Include="Buttons\Road_TransferRoadAttributes.bmp" />
+    <EmbeddedResource Include="Buttons\Road_RoadSplitTool.bmp" />
+    <EmbeddedResource Include="Buttons\Road_RoadPolygonUpdate.bmp" />
+    <EmbeddedResource Include="Forms\frmAddRoadSegAlias.resx">
+      <DependentUpon>frmAddRoadSegAlias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSplitRoadAttributes.resx">
+      <DependentUpon>frmSplitRoadAttributes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTransferRoadInfo.resx">
+      <DependentUpon>frmTransferRoadInfo.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_CheckOverlapping.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_AddAddressPoint.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_AddAddressAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_ZoomToParcel.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_AddParcelAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_Lot_Incrementer.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Lot_LotIDIncrementer.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Lot_LotIDIncrementer.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Lot_AddLotAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\frmParcelLotIncrementer.resx">
+      <DependentUpon>frmParcelLotIncrementer.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmQualityChecker.resx">
+      <DependentUpon>frmQualityChecker.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_Lot_Incrementer.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_RoadSplitTool.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\oldParcel_Overlay.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_Overlay.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Buttons\oldAddress_Overlay.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_Overlay.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_Overlay.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_Overlay.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_GetConnectedRoads.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_GetConnectedRoads.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_GetConnectedRoads.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_GetConnectedRoads.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\All_ZipperTask.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\All_ZipperTask.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditCityAddress.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_CheckOverlapping.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_AddAddressPoint.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Address_AddAddressAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditRoadName.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditCutLog.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditROSLog.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditSubdivisionLog.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Lot_AddLotAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_AddParcelAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_AddRoadBlockAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryRoadSegByRoadID.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Version_QualityChecker.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_ZoomToRoadSegmentID.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_TransferRoadAttributes.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_RoadPolygonUpdate.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_PasteFeature.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_AddRoadSegAlias.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_AddRoadNameAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Parcel_ZoomToParcel.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryAPN.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryControl.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryMissingAPNs.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryMPRParcel.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryROS.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QuerySubdivision.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QC_NoSubmit.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QC_NoSubmit.bmp" />
+    <EmbeddedResource Include="Buttons\Version_QualityChecker.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditAddressIssues.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Buttons\oldEditBlockRangeOverlap.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditBlockRangeOverlap.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\EditBlockRangeOverlap.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\oldRoad_MergeSegments.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_MergeSegments.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_MergeSegments.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\oldQueryLastEdits.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\QueryLastEdits.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\oldIntersection_overlayUpdateType.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_overlayUpdateType.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_overlayUpdateType.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Road_LinkAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\MapNum_AddAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\MapNum_AddAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\BlockNum_AddAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\BlockNum_AddAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\SubName_AddAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\SubName_AddAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\TentMap_AddAnno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\TentMap_AddAnno.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\oldIntersection_SelectUnderReivew.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_SelectUnderReivew.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Buttons\Intersection_SelectUnderReivew.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Target Name="BeforeClean">
+    <Exec WorkingDirectory="$(CommonProgramFiles)\ArcGIS\bin" Command="esriRegasm.exe &quot;$(TargetPath)&quot; /p:Desktop /u /s" Condition="Exists('$(TargetPath)')" />
+  </Target>
+  <Target Name="AfterBuild">
+    <Exec WorkingDirectory="$(CommonProgramFiles)\ArcGIS\bin" Command="esriRegasm.exe &quot;$(TargetPath)&quot; /p:Desktop /s" />
+  </Target>
+</Project>
