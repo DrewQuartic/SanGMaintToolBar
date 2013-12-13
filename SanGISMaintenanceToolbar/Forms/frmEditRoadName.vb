@@ -1,6 +1,7 @@
 ﻿
 Imports ESRI.ArcGIS.Carto
 Imports ESRI.ArcGIS.Geodatabase
+Imports ESRI.ArcGIS.esriSystem
 Imports SanGISMaintenanceToolbar.Globals
 Imports System.Windows.Forms
 
@@ -35,6 +36,8 @@ Public Class frmEditRoadName
 #End Region
 
 #Region "Primaries Form"
+
+    Private Property i As Integer
 
     Private Sub frmEditRoadName_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If Not ItFailed Then
@@ -80,6 +83,7 @@ Public Class frmEditRoadName
                 MsgBox("You do not have the privileges to edit this version.")
                 ItFailed = True
                 Me.Close()
+                Exit Sub
             End If
 
             'Load the tables
@@ -287,13 +291,62 @@ Public Class frmEditRoadName
                 Dim pchkcnt As Integer
                 pchkname = txtRDNMRdFll.Text
                 pchkQF = New QueryFilter
-                pchkQF.WhereClause = "FULL_NAME = '" & pchkname & "'"
+                pchkQF.WhereClause = "FULL_NAME = '" & pchkname & "' AND RESERVE_JUR_CD = '" & cboRDNMRdNmJur.Text & "'"
                 pchkSS = m_pRDTable.Select(pchkQF, esriSelectionType.esriSelectionTypeIDSet, esriSelectionOption.esriSelectionOptionNormal, Nothing)
                 pchkcnt = pchkSS.Count
-                pchkSS = Nothing
+                ''pchkSS = Nothing
+                ''Dim i As Int16
+
                 If pchkcnt > 0 Then
+                    Dim pCursor As ICursor
+                    Dim pEnumIDs As IEnumIDs
+                    Dim pObjectClass As IObjectClass
+                    Dim segList As New List(Of Integer)
+                    pObjectClass = m_pRDTable
+                    Dim pEnumRelats As IEnumRelationshipClass
+
+                    pEnumRelats = pObjectClass.RelationshipClasses(esriRelRole.esriRelRoleOrigin)
+                    Dim pRelationship As IRelationshipClass
+                    pRelationship = pEnumRelats.Next
+                    Do Until pRelationship Is Nothing
+                        If pRelationship.DestinationClass.AliasName = Globals.ROAD_DATASRC Then
+                            Exit Do
+                        End If
+                        pRelationship = pEnumRelats.Next
+                    Loop
+
+                    pchkSS.Search(Nothing, True, pCursor)
+                    pEnumIDs = pchkSS.IDs
+                    Dim id As Int32
+                    id = pEnumIDs.Next
+                    Dim pSet As ISet
+                    Do While id <> -1
+                        Dim pRoadNameRow As IRow
+                        pRoadNameRow = m_pRDTable.GetRow(id)
+                        pSet = pRelationship.GetObjectsRelatedToObject(pRoadNameRow)
+                        Dim pObject As IObject
+                        pObject = pSet.Next
+                        Do Until pObject Is Nothing
+                            If TypeOf pObject Is IFeature Then
+                                Dim pFeature As IFeature
+                                pFeature = pObject
+                                If (pFeature.Value(pFeature.Fields.FindField(Globals.RD_LJURIS_FLD_NAME)) = cboRDNMRdNmJur.Text) Or (pFeature.Value(pFeature.Fields.FindField(Globals.RD_RJURIS_FLD_NAME)) = cboRDNMRdNmJur.Text) Then
+                                    segList.Add(pFeature.Value(pFeature.Fields.FindField(Globals.RD_ROADSEGID_FLD_NAME)))
+
+                                End If
+                            End If
+                            pObject = pSet.Next
+                        Loop
+                        id = pEnumIDs.Next
+                    Loop
                     Dim pmsgresult As MsgBoxResult
-                    pmsgresult = MsgBox("Road Name: " & pchkname & "already exists in T.RoadName." & vbNewLine & "Would you like to continue to add a new record/roadid for this Road Name?", MsgBoxStyle.YesNo, "ROADNAME EXISTS")
+                    Dim strSegs As New String("")
+                    Dim num As Integer
+                    For Each num In segList
+                        strSegs = strSegs & Str(num) & ", "
+                    Next
+
+                    pmsgresult = MsgBox("Road Name: " & pchkname & "already exists in T.RoadName." & vbNewLine & "ROADSEGIDs: " & strSegs & " are in the same jusisdiction and have the same name." & vbNewLine & "Would you like to continue to add a new record/roadid for this Road Name?", MsgBoxStyle.YesNo, "ROADNAME EXISTS")
                     If pmsgresult = MsgBoxResult.No Then
                         MsgBox("Did not create new record/roadid for road name: " & pchkname & vbNewLine & "Clearing Form")
                         btnRDNMReset.PerformClick()

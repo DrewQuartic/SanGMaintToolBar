@@ -617,11 +617,11 @@ Public Class Globals
                                             pWkspc = pFlayer.FeatureClass.FeatureDataset.Workspace
                                         Else
                                             CheckifEditable = False
-                                            Exit Do
+                                            Exit Try
                                         End If
                                         If pWkspc Is Nothing Then
                                             CheckifEditable = False
-                                            Exit Do
+                                            Exit Try
                                         End If
                                         pversionW = pWkspc
                                         pWSE = pversionW
@@ -659,11 +659,11 @@ Public Class Globals
                                     pWkspc = pFlayer.FeatureClass.FeatureDataset.Workspace
                                 Else
                                     CheckifEditable = False
-                                    Exit Do
+                                    Exit Try
                                 End If
                                 If pWkspc Is Nothing Then
                                     CheckifEditable = False
-                                    Exit Do
+                                    Exit Try
                                 End If
                                 pversionW = pWkspc
                                 pWSE = pversionW
@@ -702,11 +702,11 @@ Public Class Globals
                             pWkspc = pFlayer.FeatureClass.FeatureDataset.Workspace
                         Else
                             CheckifEditable = False
-                            Exit Do
+                            Exit Try
                         End If
                         If pWkspc Is Nothing Then
                             CheckifEditable = False
-                            Exit Do
+                            Exit Try
                         End If
                         pversionW = pWkspc
                         pWSE = pversionW
