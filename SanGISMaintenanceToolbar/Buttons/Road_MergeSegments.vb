@@ -211,6 +211,7 @@ Public NotInheritable Class Road_MergeSegments
 
             Do
                 ' Create a list of all unique values for each field, and stop if crucial (roadid) or warn if not (speed)
+                '20131215 Drew: change to popup a form with option to choose which conflicting values to keep.
 
                 For chki = 0 To pchkFlds.FieldCount - 1
                     pchkFld = pchkFlds.Field(chki)
