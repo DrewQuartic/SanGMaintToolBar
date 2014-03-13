@@ -278,6 +278,12 @@
     <Compile Include="Forms\frmQueryRoadSegByRoadID.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmRoadMerge.Designer.vb">
+      <DependentUpon>frmRoadMerge.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRoadMerge.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmSelectPasteLayer.Designer.vb">
       <DependentUpon>frmSelectPasteLayer.vb</DependentUpon>
     </Compile>
@@ -301,6 +307,12 @@
     </Compile>
     <Compile Include="Forms\frmZipperInput.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ucRoadItemCompare.Designer.vb">
+      <DependentUpon>ucRoadItemCompare.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucRoadItemCompare.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Utilities\AddAnnoMenu.vb" />
     <Compile Include="Utilities\ExportToExcel.vb" />
@@ -326,6 +338,7 @@
     </Compile>
     <Compile Include="Utilities\OverlayMenu.vb" />
     <Compile Include="Utilities\QueryFormsMenu.vb" />
+    <Compile Include="Utilities\roadattCompare.vb" />
     <Compile Include="Utilities\SangisMaintenanceToolbar.vb" />
     <Compile Include="Buttons\EditRoadName.vb" />
     <Compile Include="Buttons\EditSubdivisionLog.vb" />
@@ -362,8 +375,14 @@
     <EmbeddedResource Include="Forms\frmQueryLastEdits.resx">
       <DependentUpon>frmQueryLastEdits.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRoadMerge.resx">
+      <DependentUpon>frmRoadMerge.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmZipperInput.resX">
       <DependentUpon>frmZipperInput.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ucRoadItemCompare.resx">
+      <DependentUpon>ucRoadItemCompare.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -750,6 +769,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Buttons\Intersection_SelectUnderReivew.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Target Name="BeforeClean">

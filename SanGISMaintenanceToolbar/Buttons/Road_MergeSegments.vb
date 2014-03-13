@@ -185,6 +185,7 @@ Public NotInheritable Class Road_MergeSegments
             pEnumFeature = m_editor.EditSelection
             Dim pChkFeature As IFeature
             pChkFeature = pEnumFeature.Next
+
             pFeatcls = pChkFeature.Class
 
             'Check road segements for different RoadIDs, FireDrive, and stop the merge
@@ -207,13 +208,15 @@ Public NotInheritable Class Road_MergeSegments
             Dim sumTLEV As Integer = 0
             Dim finFLEV As Integer = 1
             Dim finTLEV As Integer = 1
-
+            Dim strOBJID1 As String
+            Dim strOBJID2 As String
 
             Do
                 ' Create a list of all unique values for each field, and stop if crucial (roadid) or warn if not (speed)
                 '20131215 Drew: change to popup a form with option to choose which conflicting values to keep.
 
                 For chki = 0 To pchkFlds.FieldCount - 1
+
                     pchkFld = pchkFlds.Field(chki)
                     chkvarName = pchkFld.Name
                     Select Case chkvarName
@@ -308,20 +311,107 @@ Public NotInheritable Class Road_MergeSegments
                 Next chki
                 pChkFeature = pEnumFeature.Next
             Loop Until pChkFeature Is Nothing
-            'now stop, warn, or continue based on the info
-            If lstRDID.Contains(",") Or lstFRDRV.Contains(",") Then
-                MessageBox.Show("Either RoadID or FireDriv do not match across segements, please review/change before continueing", "MERGE CANCELLED", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-                Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
-                Exit Sub
-            End If
+            ''now stop, warn, or continue based on the info
+            'If lstRDID.Contains(",") Or lstFRDRV.Contains(",") Then
+            '    MessageBox.Show("Either RoadID or FireDriv do not match across segements, please review/change before continueing", "MERGE CANCELLED", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            '    Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
+            '    Exit Sub
+            'End If
 
-            If lstOBMH.Contains(",") Or lstOneWay.Contains(",") Or lstRTWAY.Contains(",") Or lstSegClass.Contains(",") Or lstSpeed.Contains(",") Then
-                If MessageBox.Show("SEGCLASS, OBMH, ONEWAY, RIGHTWAY, or SPEED do not match!" & vbNewLine & "ARE YOU SURE YOU WANT TO MERGE?", "MERGE DATA MISMATCH", Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.No Then
-                    Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
-                    MessageBox.Show("Merge Cancelled")
-                    Exit Sub
+            'If lstOBMH.Contains(",") Or lstOneWay.Contains(",") Or lstRTWAY.Contains(",") Or lstSegClass.Contains(",") Or lstSpeed.Contains(",") Then
+            '    If MessageBox.Show("SEGCLASS, OBMH, ONEWAY, RIGHTWAY, or SPEED do not match!" & vbNewLine & "ARE YOU SURE YOU WANT TO MERGE?", "MERGE DATA MISMATCH", Windows.Forms.MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.No Then
+            '        Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
+            '        MessageBox.Show("Merge Cancelled")
+            '        Exit Sub
+            '    End If
+            'End If
+
+            Dim lstcomparisons As New List(Of String)
+            lstcomparisons.Add(lstRDID)
+            lstcomparisons.Add(lstFRDRV)
+            lstcomparisons.Add(lstOBMH)
+            lstcomparisons.Add(lstOneWay)
+            lstcomparisons.Add(lstRTWAY)
+            lstcomparisons.Add(lstSegClass)
+            lstcomparisons.Add(lstSpeed)
+            'Dim dictionary As New Dictionary(Of Integer, String)
+            'dictionary.Add(0, lstOBMH)
+            'dictionary.Add(1, lstOneWay)
+            'dictionary.Add(2, lstRTWAY)
+            'dictionary.Add(3, lstSegClass)
+            'dictionary.Add(5, lstSpeed)
+            Dim rdattcompRoadID As New roadattCompare
+            rdattcompRoadID.AttName = "ROADID"
+            rdattcompRoadID.AttValue = lstRDID
+            Dim rdattcompFireDrive As New roadattCompare
+            rdattcompFireDrive.AttName = "FireDR"
+            rdattcompFireDrive.AttValue = lstFRDRV
+            Dim rdattcompOBMH As New roadattCompare
+            rdattcompOBMH.AttName = "OBMH"
+            rdattcompOBMH.AttValue = lstOBMH
+            Dim rdattcompOneWay As New roadattCompare
+            rdattcompOneWay.AttName = "OneWay"
+            rdattcompOneWay.AttValue = lstOneWay
+            Dim rdattcomplstRTWAY As New roadattCompare
+            rdattcomplstRTWAY.AttName = "RTWAY"
+            rdattcomplstRTWAY.AttValue = lstRTWAY
+            Dim rdattcomplstSegClass As New roadattCompare
+            rdattcomplstSegClass.AttName = "SegClass"
+            rdattcomplstSegClass.AttValue = lstSegClass
+            Dim rdattcomplstSpeed As New roadattCompare
+            rdattcomplstSpeed.AttName = "Speed"
+            rdattcomplstSpeed.AttValue = lstSpeed
+            Dim dictionary As New Dictionary(Of Integer, roadattCompare)
+            dictionary.Add(0, rdattcompRoadID)
+            dictionary.Add(1, rdattcompFireDrive)
+            dictionary.Add(2, rdattcomplstRTWAY)
+            dictionary.Add(3, rdattcomplstSegClass)
+            dictionary.Add(5, rdattcomplstSpeed)
+            dictionary.Add(6, rdattcompOBMH)
+            dictionary.Add(7, rdattcompOneWay)
+
+
+            Dim pair As KeyValuePair(Of Integer, roadattCompare)
+            Dim frmMerge As frmRoadMerge
+            Dim ucRoadItemCompare(dictionary.Count) As ucRoadItemCompare
+            For Each pair In dictionary
+                If pair.Value.AttValue.Contains(",") Then
+                    If frmMerge Is Nothing Then
+                        frmMerge = New frmRoadMerge
+                        frmMerge.AutoSizeMode = AutoSizeMode.GrowAndShrink
+                        frmMerge.AutoSize = True
+                        pEnumFeature.Reset()
+                        pChkFeature = pEnumFeature.Next
+                        frmMerge.lblSeg2.Text = pChkFeature.Value(pChkFeature.Fields.FindField(RD_ROADSEGID_FLD_NAME))
+                        pChkFeature = pEnumFeature.Next
+                        frmMerge.lblSeg1.Text = pChkFeature.Value(pChkFeature.Fields.FindField(RD_ROADSEGID_FLD_NAME))
+                    End If
+                    ucRoadItemCompare(pair.Key) = New ucRoadItemCompare
+                    ucRoadItemCompare(pair.Key).SegVal1 = pair.Value.AttValue.Substring(0, pair.Value.AttValue.IndexOf(","))
+                    ucRoadItemCompare(pair.Key).SegVal2 = pair.Value.AttValue.Substring(pair.Value.AttValue.IndexOf(",") + 1)
+                    ucRoadItemCompare(pair.Key).gbName = pair.Value.AttName
+                    ucRoadItemCompare(pair.Key).Top = frmMerge.Controls(frmMerge.Controls.Count - 1).Bottom
+                    ucRoadItemCompare(pair.Key).Left = frmMerge.lblSeg1.Left
+                    'frmMerge.Controls.Add(ucRoadItemCompare(pair.Key))
+                    frmMerge.flpGroups.Controls.Add(ucRoadItemCompare(pair.Key))
                 End If
+            Next
+
+            If Not frmMerge Is Nothing Then
+                'frmMerge.btnMerge.Top = frmMerge.Controls(frmMerge.Controls.Count - 1).Bottom
+                'frmMerge.btnCancel.Top = frmMerge.Controls(frmMerge.Controls.Count - 1).Bottom
+
+                'frmMerge.Refresh()
+                frmMerge.ShowDialog()
             End If
+            'If frmMerge Is Nothing Then
+            '    Exit Sub
+            'End If
+            pEnumFeature.Reset()
+            ' get the first feature
+            'pCurFeature = pEnumFeature.Next
+
+
 
             Dim levi As Integer
             'Determine the from and to levels)
@@ -368,52 +458,52 @@ Public NotInheritable Class Road_MergeSegments
             ' start edit operation
             m_editor.StartOperation()
 
-        pEnumFeature.Reset()
-        ' get the first feature
-        pCurFeature = pEnumFeature.Next
-        Dim pFlds As IFields
-        pFlds = pFeatcls.Fields
-        Dim pFld As IField
-        Dim i As Long
+            pEnumFeature.Reset()
+            ' get the first feature
+            pCurFeature = pEnumFeature.Next
+            Dim pFlds As IFields
+            pFlds = pFeatcls.Fields
+            Dim pFld As IField
+            Dim i As Long
 
-        lCount = 1
-        Do
-            ' get the geometry
-            pGeom = pCurFeature.ShapeCopy
-            If lCount = 1 Then ' if its the first feature
+            lCount = 1
+            Do
+                ' get the geometry
+                pGeom = pCurFeature.ShapeCopy
+                If lCount = 1 Then ' if its the first feature
                     pTmpGeom = pGeom
 
-            Else ' merge the geometry of the features
-                pTopoOperator = pTmpGeom
-                pOutputGeometry = pTopoOperator.Union(pGeom)
-                pTmpGeom = pOutputGeometry
-            End If
-
-            ' now go through each field, and get the proper data
-            For i = 0 To pFlds.FieldCount - 1
-                pFld = pFlds.Field(i)
-
-                Dim varName As String = pFld.Name
-                If System.Array.IndexOf(New String() {pFeatcls.LengthField.Name, pFeatcls.OIDFieldName, RD_ROADSEGID_FLD_NAME}, varName) <> -1 Then
-                    'skip, can't edit the objectid or shape fields
-                ElseIf lCount = 1 Then ' if its the first feature
-                    pNewFeature.Value(i) = pCurFeature.Value(i)
-                ElseIf System.Array.IndexOf(New String() {RD_ABHIADDR_FLD_NAME, RD_LHIGHADDR_FLD_NAME, RD_RHIGHADDR_FLD_NAME}, varName) <> -1 Then
-                    If pCurFeature.Value(i) > pNewFeature.Value(i) Then
-                        pNewFeature.Value(i) = pCurFeature.Value(i)
-                    End If
-                ElseIf System.Array.IndexOf(New String() {RD_ABLOADDR_FLD_NAME, RD_LLOWADDR_FLD_NAME, RD_RLOWADDR_FLD_NAME}, varName) <> -1 Then
-                    If pCurFeature.Value(i) < pNewFeature.Value(i) Then
-                        pNewFeature.Value(i) = pCurFeature.Value(i)
-                    End If
-                    'Else
-                    '    pNewFeature.Value(i) = pCurFeature.Value(i)
+                Else ' merge the geometry of the features
+                    pTopoOperator = pTmpGeom
+                    pOutputGeometry = pTopoOperator.Union(pGeom)
+                    pTmpGeom = pOutputGeometry
                 End If
-                'get the roadsegid that is going away
-                If varName = RD_ROADSEGID_FLD_NAME Then
-                    DlRoadSegID = pCurFeature.Value(i)
-                    pCurFeature.Value(i) = -99999
-                End If
+
+                ' now go through each field, and get the proper data
+                For i = 0 To pFlds.FieldCount - 1
+                    pFld = pFlds.Field(i)
+
+                    Dim varName As String = pFld.Name
+                    If System.Array.IndexOf(New String() {pFeatcls.LengthField.Name, pFeatcls.OIDFieldName, RD_ROADSEGID_FLD_NAME}, varName) <> -1 Then
+                        'skip, can't edit the objectid or shape fields
+                    ElseIf lCount = 1 Then ' if its the first feature
+                        pNewFeature.Value(i) = pCurFeature.Value(i)
+                    ElseIf System.Array.IndexOf(New String() {RD_ABHIADDR_FLD_NAME, RD_LHIGHADDR_FLD_NAME, RD_RHIGHADDR_FLD_NAME}, varName) <> -1 Then
+                        If pCurFeature.Value(i) > pNewFeature.Value(i) Then
+                            pNewFeature.Value(i) = pCurFeature.Value(i)
+                        End If
+                    ElseIf System.Array.IndexOf(New String() {RD_ABLOADDR_FLD_NAME, RD_LLOWADDR_FLD_NAME, RD_RLOWADDR_FLD_NAME}, varName) <> -1 Then
+                        If pCurFeature.Value(i) < pNewFeature.Value(i) Then
+                            pNewFeature.Value(i) = pCurFeature.Value(i)
+                        End If
+                        'Else
+                        '    pNewFeature.Value(i) = pCurFeature.Value(i)
+                    End If
+                    'get the roadsegid that is going away
+                    If varName = RD_ROADSEGID_FLD_NAME Then
+                        DlRoadSegID = pCurFeature.Value(i)
+                        pCurFeature.Value(i) = -99999
+                    End If
 
                 Next i
 
@@ -423,9 +513,9 @@ Public NotInheritable Class Road_MergeSegments
 
                 '-get all the existing address points using one of the segids
                 'and calc to the tempid
-            pQF = New QueryFilter
-            Dim pWhereClse As String
-            pWhereClse = ADDR_ROADSEGID_FLD_NAME & " = " & DlRoadSegID
+                pQF = New QueryFilter
+                Dim pWhereClse As String
+                pWhereClse = ADDR_ROADSEGID_FLD_NAME & " = " & DlRoadSegID
                 pQF.WhereClause = pWhereClse
                 If pAddressFtClass.FeatureCount(pQF) > 0 Then
                     AdrCnt = AdrCnt + pAddressFtClass.FeatureCount(pQF)
@@ -440,14 +530,64 @@ Public NotInheritable Class Road_MergeSegments
                 End If
 
 
-            pCurFeature.Delete() ' delete the feature
+                pCurFeature.Delete() ' delete the feature
 
-            pCurFeature = pEnumFeature.Next
-            lCount = lCount + 1
-        Loop Until pCurFeature Is Nothing
+                pCurFeature = pEnumFeature.Next
+                lCount = lCount + 1
+            Loop Until pCurFeature Is Nothing
 
-        pNewFeature.Shape = pOutputGeometry
-        pNewFeature.Store()
+            'If different values exited between the input segments for certain key fields the user should already have selected
+            'Which one to keep on the frmMerge object. Get the selected values and apply to the new road segment
+            If Not frmMerge Is Nothing Then
+                For Each cControl As Control In frmMerge.flpGroups.Controls
+                    If (TypeOf cControl Is ucRoadItemCompare) Then
+                        Dim ucIC As ucRoadItemCompare = CType(cControl, ucRoadItemCompare)
+                        Dim rb As RadioButton
+                        For Each b As RadioButton In ucIC.gbControl.Controls()
+                            If b.Checked = True Then
+                                rb = b
+                            End If
+                        Next
+                        Select Case ucIC.gbName
+                            Case "OBMH"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_OBMH_FLD_NAME)) = rb.Text
+                                End If
+
+                            Case "OneWay"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_ONEWAY_FLD_NAME)) = rb.Text
+                                End If
+                            Case "RTWAY"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_RIGHTWAY_FLD_NAME)) = rb.Text
+                                End If
+                            Case "SegClass"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_SEGCLASS_FLD_NAME)) = rb.Text
+                                End If
+                            Case "Speed"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_SPEED_FLD_NAME)) = rb.Text
+                                End If
+                            Case "ROADID"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_ROADID_FLD_NAME)) = rb.Text
+                                End If
+                            Case "FireDR"
+                                If Not rb Is Nothing Then
+                                    pNewFeature.Value(pNewFeature.Fields.FindField(RD_FIREDRIV_FLD_NAME)) = rb.Text
+                                End If
+                            Case Else
+
+                        End Select
+                    End If
+                Next
+            End If
+            
+
+            pNewFeature.Shape = pOutputGeometry
+            pNewFeature.Store()
             kpRoadSegID = pNewFeature.Value(pNewFeature.Fields.FindField(RD_ROADSEGID_FLD_NAME))
 
             '-get all the addresses calced to the temp id and calc to the new one now that it is created
