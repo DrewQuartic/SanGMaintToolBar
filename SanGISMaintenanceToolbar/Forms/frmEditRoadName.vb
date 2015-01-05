@@ -431,7 +431,8 @@ Public Class frmEditRoadName
                 txtRDNMPstID.Text = psvRow.Value(psvRow.Fields.FindField(ROADNM_POSTOPERATOR_FLD_NAME))
                 MsgBox("Added: " & txtRDNMRdFll.Text & vbNewLine & "With new RoadID of: " & pnewroadid)
             End If
-            btnRDNMReset.PerformClick()
+            'Disabled by Drew 1/1/2015 at Bobs request. Users will now manually clear the form using the clear form buttons
+            'btnRDNMReset.PerformClick()
         Catch ex As Exception
             System.Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
             Windows.Forms.MessageBox.Show(ex.Source + " " + ex.Message + " " + ex.StackTrace + " ")
