@@ -46,7 +46,4 @@
 
 
 
-    Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles gbControl.Enter
-
-    End Sub
 End Class

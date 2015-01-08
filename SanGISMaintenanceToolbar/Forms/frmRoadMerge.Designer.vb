@@ -31,13 +31,14 @@ Partial Class frmRoadMerge
         Me.flpGroups = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.AutoSize = True
         Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(15, 12)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(15, 48)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(0, 0)
         Me.FlowLayoutPanel1.TabIndex = 5
@@ -45,7 +46,7 @@ Partial Class frmRoadMerge
         'lblSeg2
         '
         Me.lblSeg2.AutoSize = True
-        Me.lblSeg2.Location = New System.Drawing.Point(187, 9)
+        Me.lblSeg2.Location = New System.Drawing.Point(187, 51)
         Me.lblSeg2.Name = "lblSeg2"
         Me.lblSeg2.Size = New System.Drawing.Size(39, 13)
         Me.lblSeg2.TabIndex = 9
@@ -54,7 +55,7 @@ Partial Class frmRoadMerge
         'lblSeg1
         '
         Me.lblSeg1.AutoSize = True
-        Me.lblSeg1.Location = New System.Drawing.Point(275, 9)
+        Me.lblSeg1.Location = New System.Drawing.Point(275, 51)
         Me.lblSeg1.Name = "lblSeg1"
         Me.lblSeg1.Size = New System.Drawing.Size(39, 13)
         Me.lblSeg1.TabIndex = 8
@@ -63,7 +64,7 @@ Partial Class frmRoadMerge
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(12, 51)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(112, 13)
         Me.Label1.TabIndex = 7
@@ -71,7 +72,7 @@ Partial Class frmRoadMerge
         '
         'btnCancel
         '
-        Me.btnCancel.Location = New System.Drawing.Point(28, 61)
+        Me.btnCancel.Location = New System.Drawing.Point(28, 103)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
         Me.btnCancel.TabIndex = 6
@@ -80,7 +81,7 @@ Partial Class frmRoadMerge
         '
         'btnMerge
         '
-        Me.btnMerge.Location = New System.Drawing.Point(28, 29)
+        Me.btnMerge.Location = New System.Drawing.Point(28, 71)
         Me.btnMerge.Name = "btnMerge"
         Me.btnMerge.Size = New System.Drawing.Size(75, 23)
         Me.btnMerge.TabIndex = 5
@@ -92,7 +93,7 @@ Partial Class frmRoadMerge
         Me.flpGroups.AutoSize = True
         Me.flpGroups.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.flpGroups.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpGroups.Location = New System.Drawing.Point(162, 22)
+        Me.flpGroups.Location = New System.Drawing.Point(162, 64)
         Me.flpGroups.Name = "flpGroups"
         Me.flpGroups.Size = New System.Drawing.Size(0, 0)
         Me.flpGroups.TabIndex = 10
@@ -101,7 +102,7 @@ Partial Class frmRoadMerge
         '
         Me.FlowLayoutPanel2.AutoSize = True
         Me.FlowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(15, 12)
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(15, 48)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
         Me.FlowLayoutPanel2.Size = New System.Drawing.Size(0, 0)
         Me.FlowLayoutPanel2.TabIndex = 5
@@ -109,18 +110,32 @@ Partial Class frmRoadMerge
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 9)
+        Me.Label2.Location = New System.Drawing.Point(12, 51)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(112, 13)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "SegIds Being Merged:"
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(12, 8)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ReadOnly = True
+        Me.TextBox1.Size = New System.Drawing.Size(382, 34)
+        Me.TextBox1.TabIndex = 12
+        Me.TextBox1.Text = "Conflicting values found between the 2 segments being merged. Please select the v" & _
+    "alue to keep"
         '
         'frmRoadMerge
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(431, 208)
+        Me.ClientSize = New System.Drawing.Size(431, 248)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.btnMerge)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.Label2)
@@ -145,4 +160,5 @@ Partial Class frmRoadMerge
     Friend WithEvents flpGroups As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents FlowLayoutPanel2 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

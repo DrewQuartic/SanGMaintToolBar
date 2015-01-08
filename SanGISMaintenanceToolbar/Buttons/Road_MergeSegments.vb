@@ -631,7 +631,8 @@ Public NotInheritable Class Road_MergeSegments
 
         Catch ex As Exception
             Windows.Forms.Cursor.Current = Windows.Forms.Cursors.Default
-            Windows.Forms.MessageBox.Show(ex.Source + " " + ex.Message + " " + ex.StackTrace + " ")
+            'Windows.Forms.MessageBox.Show(ex.Source + " " + ex.Message + " " + ex.StackTrace + " ")
+            Windows.Forms.MessageBox.Show(ex.Source + " " + ex.Message)
         End Try
     End Sub
 End Class
