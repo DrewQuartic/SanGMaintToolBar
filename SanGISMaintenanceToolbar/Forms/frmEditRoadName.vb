@@ -297,7 +297,7 @@ Public Class frmEditRoadName
                 ''pchkSS = Nothing
                 ''Dim i As Int16
 
-                If pchkcnt > 0 Then
+                If pchkcnt > 0 And (pchkname <> "PRIVATE DRIVEWAY" And pchkname <> "PRIVATE DRIVE") Then
                     Dim pCursor As ICursor
                     Dim pEnumIDs As IEnumIDs
                     Dim pObjectClass As IObjectClass
